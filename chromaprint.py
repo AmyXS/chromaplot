@@ -1,41 +1,81 @@
-#import the pyplot and wavfile modules 
 
 import matplotlib.pyplot as plot
-
+import numpy as np
 from scipy.io import wavfile
 
- 
+import librosa, librosa.display
 
 # Read the wav file (mono)
+samplingFrequency, signalData = wavfile.read('audio/1.wav')
 
-samplingFrequency, signalData = wavfile.read('1.wav')
+def plot_amplitude():
+    plot.subplot(211)
+    plot.plot(signalData)
+    plot.xlabel('Sample')
+    plot.ylabel('Amplitude')
 
- 
+def plot_spectrogram():
+    plot.subplot(212)
+    plot.specgram(signalData,Fs=samplingFrequency)
+    plot.xlabel('Time')
+    plot.ylabel('Frequency')
 
-# Plot the signal read from wav file
 
-plot.subplot(211)
+# def compute_chromagram(Y_LF):
+#     """Computes a chromagram
 
-plot.title('Spectrogram of a wav file with piano music')
+#     Notebook: C3/C3S1_SpecLogFreq-Chromagram.ipynb
 
- 
+#     Args:
+#         Y_LF (np.ndarray): Log-frequency spectrogram
 
-plot.plot(signalData)
+#     Returns:
+#         C (np.ndarray): Chromagram
+#     """
+#     C = np.zeros((12, Y_LF.shape[1]))
+#     p = np.arange(128)
+#     for c in range(12):
+#         mask = (p % 12) == c
+#         C[c, :] = Y_LF[mask, :].sum(axis=0)
+#     return C
 
-plot.xlabel('Sample')
+# C = compute_chromagram(Y_LF)
 
-plot.ylabel('Amplitude')
 
- 
 
-plot.subplot(212)
+# def plot_chromagram():
+#     fig = plot.figure(figsize=(10, 3))
+#     chroma_label = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
+#     plot.imshow(10 * np.log10(eps + C), origin='lower', aspect='auto', cmap='gray_r', 
+#             extent=[T_coef[0], T_coef[-1], 0, 12])
+#     plot.clim([0, 60])
+#     plot.xlabel('Time (seconds)')
+#     plot.ylabel('Chroma')
+#     cbar = plot.colorbar()
+#     cbar.set_label('Magnitude (dB)')
+#     plot.yticks(np.arange(12) + 0.5, chroma_label)
+#     plot.tight_layout()
 
-plot.specgram(signalData,Fs=samplingFrequency)
+#     rect = matplotlib.patches.Rectangle((29.3, 0.0), 1.2, 12, linewidth=3, edgecolor='r', facecolor='none')
+#     plot.gca().add_patch(rect)
+#     plot.text(28.5, -1.2, r'$\mathrm{C3}$', color='r', fontsize='x-large');  
 
-plot.xlabel('Time')
 
-plot.ylabel('Frequency')
+def plot_chromagram_librosa():
+    plot.subplot(213)
 
- 
+    x, Fs = librosa.load('audio/1.wav', sr=samplingFrequency)
+    N = 4096
+    H = 1024
+    eps = np.finfo(float).eps
+    C = librosa.feature.chroma_stft(y=x, sr=Fs, tuning=0, norm=None, hop_length=H, n_fft=N)
+    plot.figure(figsize=(8, 2))
+    librosa.display.specshow(10 * np.log10(eps + C), x_axis='time', 
+                            y_axis='chroma', sr=Fs, hop_length=H)
+    plot.colorbar();
+
+plot_amplitude()
+plot_spectrogram()
+plot_chromagram_librosa()
 
 plot.show()

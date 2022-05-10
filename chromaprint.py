@@ -62,7 +62,7 @@ def plot_spectrogram():
 
 
 def plot_chromagram_librosa():
-    plot.subplot(213)
+    plot.subplot(212)
 
     x, Fs = librosa.load('audio/1.wav', sr=samplingFrequency)
     N = 4096

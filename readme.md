@@ -6,6 +6,8 @@ Use python 3.9.12
 
 ## Setup 
 ```bash
+py -m pip install librosa scipy matplotlib ipython numpy # Windows
+
 pip3 install librosa scipy matplotlib ipython
 pip3 install --no-binary numpy # this is required for some macOS problems
 ```

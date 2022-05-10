@@ -1,7 +1,8 @@
 # Chromaplot
 
-A simple Python script that plot spectrograms and chromagrams for a given audio file.
+A simple script that plot amplitude, spectrograms and chromagrams for a given wav audio file. 
 
+![screenshot](resources/Screenshot.jpg)
 
 ## Setup 
 

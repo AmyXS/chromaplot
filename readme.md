@@ -1,6 +1,6 @@
 # Chromaplot
 
-A simple script that plots amplitude, spectrograms and chromagrams for a given wav audio file. 
+A simple script that plots amplitude, spectrograms and chromagrams for a given mono wav audio file. 
 
 ![screenshot](resources/Screenshot.jpg)
 

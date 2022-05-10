@@ -6,7 +6,7 @@ from scipy.io import wavfile
 import librosa, librosa.display
 
 # Read the wav file (mono)
-samplingFrequency, signalData = wavfile.read('audio/1.wav')
+samplingFrequency, signalData = wavfile.read('audio/simple_piano.wav')
 
 def plot_amplitude():
     plot.subplot(211)
@@ -64,7 +64,7 @@ def plot_spectrogram():
 def plot_chromagram_librosa():
     plot.subplot(212)
 
-    x, Fs = librosa.load('audio/1.wav', sr=samplingFrequency)
+    x, Fs = librosa.load('audio/simple_piano.wav', sr=samplingFrequency)
     N = 4096
     H = 1024
     eps = np.finfo(float).eps

@@ -6,8 +6,9 @@ from scipy.io import wavfile
 import librosa, librosa.display
 
 # Read the wav file (mono)
-audioPath = 'resources/Feel_Like_Makin_Love/original.wav'
+audioPath ='resources/simple_piano.wav'
 samplingFrequency, signalData = wavfile.read(audioPath)
+
 
 def plot_amplitude():
     plot.subplot(211)

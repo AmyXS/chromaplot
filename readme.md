@@ -1,6 +1,9 @@
 # Chromaplot
 
-A simple script that plots amplitude, spectrograms and chromagrams for a given mono wav audio file. 
+chromaplot.py is a simple script that plots amplitude, spectrograms and chromagrams for a given mono wav audio file. 
+
+chromacompare.py plots a few chromagram using different algorithms offered in librosa.
+
 
 ![screenshot](resources/Screenshot.jpg)
 

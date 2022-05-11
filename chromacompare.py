@@ -4,9 +4,9 @@
 import numpy, scipy, matplotlib.pyplot as plt, IPython.display as ipd
 import librosa, librosa.display
 
+audioPath ='resources/Feel_Like_Makin_Love/sing-2s.wav'
 
-
-x, sr = librosa.load('resources/simple_piano.wav')
+x, sr = librosa.load(audioPath)
 ipd.Audio(x, rate=sr)
 
 # Plot a constant-Q spectrogram
